@@ -15,10 +15,9 @@ const getAllOrders = async (req, res) => {
     }
 };
 
-// Get a single order for a buyer by order ID
+
 const getSingleOrder = async (req, res) => {
     try {
-        // Extract buyerId and orderId from the request parameters
         const buyerId = new ObjectId(req.params.buyerId);
         const orderId = new ObjectId(req.params.orderId);
 
@@ -101,37 +100,56 @@ const createOrder = async (req, res) => {
 // Update an order's status (following your provided structure)
 const updateOrder = async (req, res) => {
     try {
-        // Extract buyerId and orderId from URL parameters
-        const buyerId = new ObjectId(req.params.buyerId);  // Buyer ID from URL parameter
-        const orderId = new ObjectId(req.params.orderId);  // Order ID from URL parameter
+        const buyerId = new ObjectId(req.params.buyerId);
+        const orderId = new ObjectId(req.params.orderId);
 
-        // Log the buyerId and orderId for debugging
         console.log("Buyer ID:", buyerId);
         console.log("Order ID:", orderId);
 
-        // Create the updated order object with the data from the request body
-        const updatedOrder = {
-            buyerId: buyerId,
-            quantity: req.body.quantity,  // Updated quantity from request body
-            // You can add any other fields that you want to update, like buyerName, etc.
-        };
+        const updatedFields = {};
+        if (req.body.quantity !== undefined) {
+            updatedFields.quantity = req.body.quantity;
+        }
 
-        // Perform the update operation in MongoDB
+        if (Object.keys(updatedFields).length === 0) {
+            return res.status(400).json({ message: "No valid fields provided for update." });
+        }
+
         const response = await mongodb.getDatabase().db().collection("Orders").updateOne(
-            { _id: orderId, buyerId: buyerId }, // Ensure we match the orderId and buyerId
-            { $set: updatedOrder } // Use $set to update specific fields
+            { _id: orderId, buyerId: buyerId }, 
+            { $set: updatedFields }
         );
 
-        // Check if the update was successful
-        if (response.modifiedCount > 0) {
-            res.status(200).send(); // Successfully updated
-        } else {
-            res.status(400).json({ message: "No order was updated, check if the order exists and if any values changed" });
+        if (response.modifiedCount > 0 && req.body.quantity !== undefined) {
+            // Retrieve the updated order
+            const order = await mongodb.getDatabase().db().collection("Orders").findOne({ _id: orderId });
+
+            // Fetch the product price
+            const product = await mongodb.getDatabase().db().collection("Products").findOne({ _id: order.productId });
+
+            if (!product) {
+                return res.status(404).json({ message: "Product not found while updating payment." });
+            }
+
+            // Recalculate amount
+            const quantity = Number(order.quantity);
+            const price = Number(product.price);
+            const totalAmount = quantity * price;
+
+            // Update the corresponding payment amount
+            await mongodb.getDatabase().db().collection("Payments").updateOne(
+                { orderId: orderId },
+                { $set: { amount: totalAmount } }
+            );
         }
+
+        res.status(200).json({ message: "Order and payment amount updated successfully" });
+
     } catch (err) {
         res.status(500).json({ message: "An error occurred while updating the order", error: err });
     }
 };
+
 
 
 

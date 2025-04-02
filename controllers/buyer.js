@@ -44,22 +44,29 @@ const createBuyer = async (req,res) =>{
     }
 };
 
-const updateBuyer = async (req,res) =>{
-    try{
+const updateBuyer = async (req, res) => {
+    try {
         const buyerId = new ObjectId(req.params.id);
-        const buyer = {
+
+        const updatedBuyer = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             userName: req.body.userName
-        }
-        const response = await mongodb.getDatabase().db().collection("Buyers").replaceOne({_id: buyerId}, buyer);
+        };
 
-        if(response.modifiedCount > 0){
-            res.status(204).send()
-        }else{
-            res.status(500).json(response.error || "Some error occurred while updating the buyer");
+
+        const response = await mongodb.getDatabase().db().collection("Buyers").updateOne(
+            { _id: buyerId }, 
+            { $set: updatedBuyer }  
+        );
+
+
+        if (response.modifiedCount > 0) {
+            res.status(204).send();  
+        } else {
+            res.status(500).json({ message: "No changes made, check if the buyer exists or if the data is the same" });
         }
-    }catch (err){
+    } catch (err) {
         res.status(500).json({ message: "An error occurred while updating the buyer", error: err });
     }
 };

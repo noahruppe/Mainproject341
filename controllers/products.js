@@ -52,28 +52,31 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-
         const sellerId = new ObjectId(req.params.sellerId);
         const productId = new ObjectId(req.params.productId);
 
         const updatedProduct = {
             productName: req.body.productName,
             description: req.body.description,
-            price: req.body.price,
-            sellerId: sellerId
+            price: req.body.price
         };
 
-        const response = await mongodb.getDatabase().db().collection("Products").replaceOne({ sellerId: sellerId, _id: productId }, updatedProduct);
+        // Use updateOne with $set to update specific fields while keeping _id unchanged
+        const response = await mongodb.getDatabase().db().collection("Products").updateOne(
+            { sellerId: sellerId, _id: productId }, // Find product by sellerId and productId
+            { $set: updatedProduct } // Update only specified fields
+        );
 
         if (response.modifiedCount > 0) {
             res.status(204).send();
         } else {
-            res.status(500).json(response.error || "Some error occurred while updating the product");
+            res.status(400).json({ message: "No changes made or product not found." });
         }
     } catch (err) {
         res.status(500).json({ message: "An error occurred while updating the product", error: err });
     }
 };
+
 
 const deleteProduct = async (req, res) => {
     try {

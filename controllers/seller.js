@@ -46,23 +46,32 @@ const createSeller = async (req, res) => {
 
 const updateSeller = async (req, res) => {
     try {
-        const sellerId = new ObjectId(req.params.id);
-        const seller = {
+        const sellerId = new ObjectId(req.params.id);  
+
+        
+        const updatedSeller = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             userName: req.body.userName
         };
-        const response = await mongodb.getDatabase().db().collection("Sellers").replaceOne({ _id: sellerId }, seller);
 
+    
+        const response = await mongodb.getDatabase().db().collection("Sellers").updateOne(
+            { _id: sellerId },  
+            { $set: updatedSeller }  
+        );
+
+        
         if (response.modifiedCount > 0) {
-            res.status(204).send();
+            res.status(204).send();  
         } else {
-            res.status(500).json(response.error || "Some error occurred while updating the seller");
+            res.status(400).json({ message: "No changes made or seller not found." });
         }
     } catch (err) {
         res.status(500).json({ message: "An error occurred while updating the seller", error: err });
     }
 };
+
 
 const deleteSeller = async (req, res) => {
     try {
