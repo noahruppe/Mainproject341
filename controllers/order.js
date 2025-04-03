@@ -3,6 +3,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 
 const getAllOrders = async (req, res) => {
+    // #swagger.tags = ["Orders"]
     try {
         const buyerId = new ObjectId(req.params.buyerId);
         const result = await mongodb.getDatabase().db().collection("Orders").find({ buyerId: buyerId });
@@ -17,6 +18,7 @@ const getAllOrders = async (req, res) => {
 
 
 const getSingleOrder = async (req, res) => {
+    // #swagger.tags = ["Orders"]
     try {
         const buyerId = new ObjectId(req.params.buyerId);
         const orderId = new ObjectId(req.params.orderId);
@@ -43,6 +45,7 @@ const getSingleOrder = async (req, res) => {
 
 // Create a new order (linking buyer, seller, and product)
 const createOrder = async (req, res) => {
+    // #swagger.tags = ["Orders"]
     try {
         // Extract buyerId, sellerId, and productId from the request parameters
         const buyerid = new ObjectId(req.params.buyerid);  // Buyer ID from URL parameter
@@ -99,6 +102,7 @@ const createOrder = async (req, res) => {
 
 // Update an order's status (following your provided structure)
 const updateOrder = async (req, res) => {
+    // #swagger.tags = ["Orders"]
     try {
         const buyerId = new ObjectId(req.params.buyerId);
         const orderId = new ObjectId(req.params.orderId);
@@ -160,6 +164,7 @@ const updateOrder = async (req, res) => {
 
 // Delete an order
 const deleteOrder = async (req, res) => {
+    // #swagger.tags = ["Orders"]
     try {
         const buyerId = new ObjectId(req.params.buyerId);  // Buyer ID from URL parameter
         const orderId = new ObjectId(req.params.orderId);  // Order ID from URL parameter

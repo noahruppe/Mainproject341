@@ -2,6 +2,7 @@ const mongodb = require("../data/database");
 const ObjectId = require("mongodb").ObjectId;
 
 const getAll = async (req,res) =>{
+    // #swagger.tags = ["Payments"]
     try{
         const buyerId = new ObjectId(req.params.buyerId);
         const result = await mongodb.getDatabase().db().collection("Payments").find({buyerId: buyerId});
@@ -14,6 +15,7 @@ const getAll = async (req,res) =>{
 };
 
 const getSingle = async (req,res) =>{
+    // #swagger.tags = ["Payments"]
     try{
         const buyerId = new ObjectId(req.params.buyerId);
         const paymentId = new ObjectId(req.params.id);
@@ -28,6 +30,7 @@ const getSingle = async (req,res) =>{
 }
 
 const createPayment = async (req,res) =>{
+    // #swagger.tags = ["Payments"]
     try{
         const orderId = new ObjectId(req.params.orderId);
 
@@ -74,6 +77,7 @@ const createPayment = async (req,res) =>{
 };
 
 const updatePayment = async (req, res) => {
+    // #swagger.tags = ["Payments"]
     try {
         const buyerId = new ObjectId(req.params.buyerId); // Fix here
         const paymentId = new ObjectId(req.params.id);
@@ -101,6 +105,7 @@ const updatePayment = async (req, res) => {
 };
 
 const deletePayment = async (req, res) => {
+    // #swagger.tags = ["Payments"]
     try {
         const buyerId = new ObjectId(req.params.buyerId);  // Buyer ID from URL parameter
         const paymentId = new ObjectId(req.params.id);  // Order ID from URL parameter

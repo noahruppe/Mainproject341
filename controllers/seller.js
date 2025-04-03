@@ -2,6 +2,7 @@ const mongodb = require("../data/database");
 const ObjectId = require("mongodb").ObjectId;
 
 const getAll = async (req, res) => {
+     // #swagger.tags = ["Sellers"]
     try {
         const result = await mongodb.getDatabase().db().collection("Sellers").find();
         const seller = await result.toArray();
@@ -14,6 +15,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+    // #swagger.tags = ["Sellers"]
     try {
         const sellerId = new ObjectId(req.params.id);
         const result = await mongodb.getDatabase().db().collection("Sellers").find({ _id: sellerId });
@@ -27,6 +29,7 @@ const getSingle = async (req, res) => {
 };
 
 const createSeller = async (req, res) => {
+    // #swagger.tags = ["Sellers"]
     try {
         const seller = {
             firstName: req.body.firstName,
@@ -45,6 +48,7 @@ const createSeller = async (req, res) => {
 };
 
 const updateSeller = async (req, res) => {
+    // #swagger.tags = ["Sellers"]
     try {
         const sellerId = new ObjectId(req.params.id);  
 
@@ -74,6 +78,7 @@ const updateSeller = async (req, res) => {
 
 
 const deleteSeller = async (req, res) => {
+    // #swagger.tags = ["Sellers"]
     try {
         const sellerId = new ObjectId(req.params.id);
         const response = await mongodb.getDatabase().db().collection("Sellers").deleteOne({ _id: sellerId });

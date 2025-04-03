@@ -2,6 +2,7 @@ const mongodb = require("../data/database");
 const ObjectId = require("mongodb").ObjectId;
 
 const getAll = async (req, res) => {
+    // #swagger.tags = ["Products"]
     try {
         const sellerId = new ObjectId(req.params.sellerId);
         const result = await mongodb.getDatabase().db().collection("Products").find({ sellerId: sellerId });
@@ -15,6 +16,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+     // #swagger.tags = ["Products"]
     try {
         const sellerId = new ObjectId(req.params.sellerId);
         const productId = new ObjectId(req.params.productId);
@@ -29,6 +31,7 @@ const getSingle = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
+     // #swagger.tags = ["Products"]
     try {
         const sellerId = new ObjectId(req.params.sellerId);
         const product = {
@@ -51,6 +54,7 @@ const createProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
+     // #swagger.tags = ["Products"]
     try {
         const sellerId = new ObjectId(req.params.sellerId);
         const productId = new ObjectId(req.params.productId);
@@ -79,6 +83,7 @@ const updateProduct = async (req, res) => {
 
 
 const deleteProduct = async (req, res) => {
+     // #swagger.tags = ["Products"]
     try {
 
         const sellerId = new ObjectId(req.params.sellerId);
