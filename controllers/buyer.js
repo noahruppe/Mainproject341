@@ -92,10 +92,4 @@ const deleteBuyer = async (req,res) =>{
     }
 }
 
-module.exports = {
-    getAll,
-    getSingle,
-    createBuyer,
-    updateBuyer,
-    deleteBuyer
-}
+module.exports = {getAll,getSingle,createBuyer,updateBuyer, deleteBuyer}
