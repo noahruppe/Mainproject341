@@ -9,19 +9,19 @@ POST  http://localhost:3002/buyer
 Content-Type: application/json
 
 {
-   "firstName": "james",
+   "firstName": "Dave",
    "lastName": "elman",
     "userName": "elman123"
 }
 
 ### update buyer  buyerid
-Put http://localhost:3002/buyer/67edc8953425b8ea3e1321a3
+Put http://localhost:3002/buyer/67f0aff2dc490eb125fba708
 Content-Type: application/json
 
 {
     "firstName": "Ray",
     "lastName": "Ruppe",
-    "userName": "password1"
+    "userName": "password1",
 }
 
 ### delete buyer 
@@ -50,9 +50,11 @@ POST  http://localhost:3002/seller
 Content-Type: application/json
 
 {
-   "firstName": "Mick",
-   "lastName": "meets",
-    "userName": "mickymeet1"
+    "sellerName": "Dave Jonathan",
+    "userName": "DaveJ",
+    "email": "omohsam81@gamil.com",
+    "phone": "08069015003",
+    "address": "Nigeria"
 }
 
 ### update seller sellerid
@@ -84,9 +86,9 @@ POST  http://localhost:3002/product/67ec8ea8298829fe0354a2f1
 Content-Type: application/json
 
 {
-   "productName": "jacket",
-   "description": "Nike jaket",
-    "price": 60
+   "productName": "Nike Shoe",
+   "description": "Nike Shoe",
+   "price": 100.00
 }
 
 ### update product sellerid then product id 
@@ -149,7 +151,12 @@ POST  http://localhost:3002/payment/67edb27bea903d6100922480
 Content-Type: application/json
 
 {
-   "cardInfo": "23912342345"
+      "orderId": "67edb27bea903d6100922480",
+      "buyerId": "67ed8c9cc3f27d1564aa4754",
+      "sellerId":"67f0b114dc490eb125fba70a",
+      "productId": "67f0ceb5b42fe39eda90da1b",
+      "amount": 700 ,
+      "cardInfo": 333333344444
 }
 
 ### update a payment buyerid and paymentid
