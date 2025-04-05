@@ -1,5 +1,5 @@
 const setup = (req,res) =>{
-    res.send("Hello World");
+    res.send("WELCOME");
 };
 
 module.exports = {
