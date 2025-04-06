@@ -83,7 +83,7 @@ const deleteBuyer = async (req,res) =>{
         const response = await mongodb.getDatabase().db().collection("Buyers").deleteOne({_id: buyerId});
 
         if(response.deletedCount > 0){
-            res.status(204).json(response);
+            res.status(204).send();
         }else{
             res.status(500).json(response.error || "An error occurred while deleting the buyer");
         }
