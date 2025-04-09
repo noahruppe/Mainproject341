@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const validation = require("../middleware/validate")
 
 
 const sellercontroller = require("../controllers/seller");
@@ -8,9 +9,9 @@ router.get("/" , sellercontroller.getAll);
 
 router.get("/:id", sellercontroller.getSingle);
 
-router.post("/", sellercontroller.createSeller);
+router.post("/", validation.saveSeller, sellercontroller.createSeller);
 
-router.put("/:id", sellercontroller.updateSeller);
+router.put("/:id",validation.saveSeller,  sellercontroller.updateSeller);
 
 router.delete("/:id", sellercontroller.deleteSeller);
 

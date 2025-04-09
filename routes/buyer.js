@@ -1,16 +1,17 @@
 const router = require("express").Router();
 
+const validation = require("../middleware/validate")
 const buyerController = require("../controllers/buyer");
 
 router.get("/" , buyerController.getAll);
 
 router.get("/:id", buyerController.getSingle);
 
-router.post("/", buyerController.createBuyer);
+router.post("/", validation.saveBuyer, buyerController.createBuyer);
 
-router.put("/:id", buyerController.updateBuyer);
+router.put("/:id", validation.saveBuyer, buyerController.updateBuyer);
 
-router.delete("/:id", buyerController.deleteBuyer);
+router.delete("/:id",  buyerController.deleteBuyer);
 
 
 
