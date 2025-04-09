@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "user API",
-    "description": "userAPI",
+    "title": "Shopping APP",
+    "description": "Buying and selling services",
     "version": "1.0.0"
   },
   "host": "mainproject341.onrender.com",
