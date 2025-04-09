@@ -5,6 +5,8 @@ const passport = require("passport");
 const session = require("express-session");
 const GitHubStrategy = require("passport-github2").Strategy;
 const cors = require("cors");
+require('dotenv').config();
+
 
 app.use(bodyParser.json());
 app.use(session({
