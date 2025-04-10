@@ -120,7 +120,7 @@ const deletePayment = async (req, res) => {
 
         // Check if the order was successfully deleted
         if (response.deletedCount > 0) {
-            res.status(204).send();  // Successfully deleted
+            res.status(200).json({ message: "payment deleted successfully" });  
         } else {
             res.status(404).json({ message: "Payment not found or not associated with this buyer." });
         }
