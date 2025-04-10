@@ -38,7 +38,7 @@ const createBuyer = async (req,res) =>{
         };
         const response = await mongodb.getDatabase().db().collection("Buyers").insertOne(buyer);
         if (response.acknowledged > 0 ){
-            res.status(204).json({ message: "Buyer created successfully" });
+            res.status(200).json({ message: "Buyer created successfully" });
         }else{
             res.status(500).json(response.error || "Some error occurred while inserting the buyer");
         }
@@ -66,7 +66,7 @@ const updateBuyer = async (req, res) => {
 
 
         if (response.modifiedCount > 0) {
-            res.status(204).json({ message: "Buyer updated successfully" });
+            res.status(200).json({ message: "Buyer updated successfully" });
         } else {
             res.status(500).json({ message: "No changes made, check if the buyer exists or if the data is the same" });
         }
@@ -83,7 +83,7 @@ const deleteBuyer = async (req,res) =>{
         const response = await mongodb.getDatabase().db().collection("Buyers").deleteOne({_id: buyerId});
 
         if(response.deletedCount > 0){
-            res.status(204).json({ message: "Buyer deleted successfully" });
+            res.status(200).json({ message: "Buyer deleted successfully" });
         }else{
             res.status(500).json(response.error || "An error occurred while deleting the buyer");
         }
