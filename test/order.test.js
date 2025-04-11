@@ -1,4 +1,4 @@
-// Noah Ruppe created this page
+
 const request = require("supertest");
 const app = require("../app");
 const mongodb = require("../data/database");
