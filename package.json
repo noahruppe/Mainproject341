@@ -9,7 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "body-parser": "^2.2.0",
     "cor": "^0.0.0",
@@ -32,5 +31,9 @@
     "nodemon": "^3.1.9",
     "supertest": "^7.1.0",
     "swagger-autogen": "^2.23.7"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "description": ""
 }
