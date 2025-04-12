@@ -162,7 +162,7 @@ const deleteOrder = async (req, res) => {
     // #swagger.tags = ["Orders"]
     try {
         const buyerId = new ObjectId(req.params.buyerId);  // Buyer ID from URL parameter
-        const orderId = new ObjectId(req.params.orderId);  // Order ID from URL parameter
+        const orderId = new ObjectId(req.params.orderId);  //     Order ID from URL parameter
 
         // Perform the delete operation
         const response = await mongodb.getDatabase().db().collection("Orders").deleteOne({
@@ -172,7 +172,7 @@ const deleteOrder = async (req, res) => {
 
         // Check if the order was successfully deleted
         if (response.deletedCount > 0) {
-            res.status(204)..json({ message: "Order deleted successfully" });
+            res.status(204).json({ message: "Order deleted successfully" });
         } else {
             res.status(404).json({ message: "Order not found or not associated with this buyer." });
         }
