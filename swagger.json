@@ -5,7 +5,7 @@
     "description": "userAPI",
     "version": "1.0.0"
   },
-  "host": "https://samuel-team5.onrender.com",
+  "host": "samuel-team5.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
