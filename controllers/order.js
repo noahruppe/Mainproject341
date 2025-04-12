@@ -162,7 +162,7 @@ const deleteOrder = async (req, res) => {
     // #swagger.tags = ["Orders"]
     try {
         const buyerId = new ObjectId(req.params.buyerId);  // Buyer ID from URL parameter
-        const orderId = new ObjectId(req.params.orderId);  // Order ID from URL parameter
+        const orderId = new ObjectId(req.params.orderId);  //     Order ID from URL parameter
 
         // Perform the delete operation
         const response = await mongodb.getDatabase().db().collection("Orders").deleteOne({
