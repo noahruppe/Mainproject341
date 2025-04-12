@@ -88,7 +88,7 @@ const createOrder = async (req, res) => {
 
         // If the order was successfully created, send a response with order details
         if (response.acknowledged) {
-            res.status(201).send();
+            res.status(201).json({ message: "Order created successfully" });
         } else {
             res.status(500).json(response.error || "Some error occurred while creating the order");
         }
@@ -157,11 +157,6 @@ const updateOrder = async (req, res) => {
 
 
 
-
-
-
-
-
 // Delete an order
 const deleteOrder = async (req, res) => {
     // #swagger.tags = ["Orders"]
@@ -177,7 +172,7 @@ const deleteOrder = async (req, res) => {
 
         // Check if the order was successfully deleted
         if (response.deletedCount > 0) {
-            res.status(204).send();  // Successfully deleted
+            res.status(204)..json({ message: "Order deleted successfully" });
         } else {
             res.status(404).json({ message: "Order not found or not associated with this buyer." });
         }

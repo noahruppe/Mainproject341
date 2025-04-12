@@ -38,7 +38,7 @@ const createSeller = async (req, res) => {
         };
         const response = await mongodb.getDatabase().db().collection("Sellers").insertOne(seller);
         if (response.acknowledged > 0) {
-            res.status(204).send();
+            res.status(200).json({ message: "Seller created successfully" });
         } else {
             res.status(500).json(response.error || "Some error occurred while inserting the seller");
         }
@@ -67,7 +67,7 @@ const updateSeller = async (req, res) => {
 
         
         if (response.modifiedCount > 0) {
-            res.status(204).send();  
+            res.status(200).json({ message: "Seller updated successfully" }); 
         } else {
             res.status(400).json({ message: "No changes made or seller not found." });
         }
@@ -84,7 +84,7 @@ const deleteSeller = async (req, res) => {
         const response = await mongodb.getDatabase().db().collection("Sellers").deleteOne({ _id: sellerId });
 
         if (response.deletedCount > 0) {
-            res.status(204).send();
+            res.status(200).json({ message: "Seller deleted successfully" });
         } else {
             res.status(500).json(response.error || "An error occurred while deleting the seller");
         }

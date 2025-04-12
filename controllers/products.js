@@ -46,7 +46,7 @@ const createProduct = async (req, res) => {
         const response = await mongodb.getDatabase().db().collection("Products").insertOne(product);
 
         if (response.acknowledged > 0) {
-            res.status(204).send();
+            res.status(200).json({ message: "Product created successfully" });
         } else {
             res.status(500).json(response.error || "Some error occurred while creating the product");
         }
@@ -74,7 +74,7 @@ const updateProduct = async (req, res) => {
         );
 
         if (response.modifiedCount > 0) {
-            res.status(204).send();
+            res.status(200).json({ message: " Product updated successfully" });
         } else {
             res.status(400).json({ message: "No changes made or product not found." });
         }
@@ -94,7 +94,7 @@ const deleteProduct = async (req, res) => {
         const response = await mongodb.getDatabase().db().collection("Products").deleteOne({ sellerId: sellerId, _id: productId });
 
         if (response.deletedCount > 0) {
-            res.status(204).send();
+            res.status(204).json({ message: "Product deleted successfully" });
         } else {
             res.status(500).json(response.error || "An error occurred while deleting the product");
         }
