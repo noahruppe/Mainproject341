@@ -1,3 +1,5 @@
+// Noah Ruppe created this page
+
 const validator = require('../helpers/validate');
 const saveBuyer = async (req, res, next) => {
     const validationRule = {
