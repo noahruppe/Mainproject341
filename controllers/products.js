@@ -17,12 +17,10 @@ const getAll = async (req, res) => {
     res.setHeader("Content-type", "application/json");
     res.status(200).json(products);
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        message: "An error occurred while fetching the products",
-        error: err,
-      });
+    res.status(500).json({
+      message: "An error occurred while fetching the products",
+      error: err,
+    });
   }
 };
 
@@ -41,12 +39,10 @@ const getSingle = async (req, res) => {
     res.setHeader("Content-type", "application/json");
     res.status(200).json(product[0]);
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        message: "An error occurred while fetching the product",
-        error: err,
-      });
+    res.status(500).json({
+      message: "An error occurred while fetching the product",
+      error: err,
+    });
   }
 };
 
@@ -59,6 +55,11 @@ const createProduct = async (req, res) => {
       productName: req.body.productName,
       description: req.body.description,
       price: req.body.price,
+      location: req.body.location,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      warranty: req.body.warranty,
+      stock: req.body.stock,
     };
 
     const response = await mongodb
@@ -77,12 +78,10 @@ const createProduct = async (req, res) => {
         );
     }
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        message: "An error occurred while creating the product",
-        error: err,
-      });
+    res.status(500).json({
+      message: "An error occurred while creating the product",
+      error: err,
+    });
   }
 };
 
@@ -96,6 +95,10 @@ const updateProduct = async (req, res) => {
       productName: req.body.productName,
       description: req.body.description,
       price: req.body.price,
+      location: req.body.location,
+      warranty: req.body.warranty,
+      stock: req.body.stock,
+      updatedAt: new Date(), // Update the updatedAt field to current date
     };
 
     // Use updateOne with $set to update specific fields while keeping _id unchanged
@@ -116,12 +119,10 @@ const updateProduct = async (req, res) => {
         .json({ message: "No changes made or product not found." });
     }
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        message: "An error occurred while updating the product",
-        error: err,
-      });
+    res.status(500).json({
+      message: "An error occurred while updating the product",
+      error: err,
+    });
   }
 };
 
@@ -145,12 +146,10 @@ const deleteProduct = async (req, res) => {
         .json(response.error || "An error occurred while deleting the product");
     }
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        message: "An error occurred while deleting the product",
-        error: err,
-      });
+    res.status(500).json({
+      message: "An error occurred while deleting the product",
+      error: err,
+    });
   }
 };
 
