@@ -94,7 +94,7 @@ const deleteProduct = async (req, res) => {
         const response = await mongodb.getDatabase().db().collection("Products").deleteOne({ sellerId: sellerId, _id: productId });
 
         if (response.deletedCount > 0) {
-            res.status(204).json({ message: "Product deleted successfully" });
+            res.status(200).json({ message: "Product deleted successfully" });
         } else {
             res.status(500).json(response.error || "An error occurred while deleting the product");
         }
