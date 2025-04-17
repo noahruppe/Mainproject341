@@ -13,7 +13,7 @@ const getAll = async (req, res) => {
         res.setHeader("Content-type", "application/json");
         res.status(200).json(products);
     } catch (err) {
-        res.status(500).json({ message: "An error occurred while fetching the products", error: err });
+        res.status(500).json({ message: "An error occurred while fetching thee products", error: err });
     }
 };
 
