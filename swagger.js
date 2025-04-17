@@ -1,4 +1,5 @@
 const swaggerAutogen = require("swagger-autogen")();
+const swagger = require("./routes/swagger.js");
 
 const doc = {
   info: {
