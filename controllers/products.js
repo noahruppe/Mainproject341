@@ -40,7 +40,12 @@ const createProduct = async (req, res) => {
             sellerId: sellerId,
             productName: req.body.productName,
             description: req.body.description,
-            price: req.body.price
+            price: req.body.price,
+            location: req.body.location,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            warranty: req.body.warranty,
+            stock: req.body.stock,
         };
 
         const response = await mongodb.getDatabase().db().collection("Products").insertOne(product);
@@ -62,9 +67,15 @@ const updateProduct = async (req, res) => {
         const productId = new ObjectId(req.params.productId);
 
         const updatedProduct = {
+            sellerId: sellerId,
             productName: req.body.productName,
             description: req.body.description,
-            price: req.body.price
+            price: req.body.price,
+            location: req.body.location,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            warranty: req.body.warranty,
+            stock: req.body.stock,
         };
 
         // Use updateOne with $set to update specific fields while keeping _id unchanged
