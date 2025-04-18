@@ -5,7 +5,7 @@
     "description": "userAPI",
     "version": "1.0.0"
   },
-  "host": "https://mainproject341-5ixv.onrender.com",
+  "host": "mainproject341-5ixv.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
