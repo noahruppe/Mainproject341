@@ -13,7 +13,7 @@ const getAll = async (req, res) => {
         res.setHeader("Content-type", "application/json");
         res.status(200).json(products);
     } catch (err) {
-        res.status(500).json({ message: "An error occurred while fetching thee products", error: err });
+        res.status(500).json({ message: "An error occurred while fetching the products", error: err });
     }
 };
 
@@ -94,7 +94,7 @@ const deleteProduct = async (req, res) => {
         const response = await mongodb.getDatabase().db().collection("Products").deleteOne({ sellerId: sellerId, _id: productId });
 
         if (response.deletedCount > 0) {
-            res.status(204).json({ message: "Product deleted successfully" });
+            res.status(200).json({ message: "Product deleted successfully" });
         } else {
             res.status(500).json(response.error || "An error occurred while deleting the product");
         }

@@ -1,3 +1,4 @@
+// Daniel Adetaba Adongo  worked on the product testing.
 const request = require("supertest");
 const app = require("../app");
 const mongodb = require("../data/database");
