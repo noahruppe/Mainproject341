@@ -5,10 +5,10 @@
     "description": "userAPI",
     "version": "1.0.0"
   },
-  "host": "https://mainproject341.onrender.com",
+  "host": "https://mainproject341-5ixv.onrender.com",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/login": {
